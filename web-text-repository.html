@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - A.G.</title>
+    <style>
+        /*  Fundo escuro, texto pálido, fonte de terminal */
+        body {
+            background-color: #050505;
+            color: #b3b3b3;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            animation: flicker 5s infinite;
+        }
+
+        /* Efeito de linhas de monitor antigo (Scanlines) */
+        #crt-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+            background-size: 100% 3px;
+            pointer-events: none; /* Permite que você clique através da camada */
+            z-index: 9999;
+        }
+
+        /* Leve cintilação na tela para causar desconforto sutil */
+        @keyframes flicker {
+            0% { opacity: 0.98; }
+            5% { opacity: 0.90; }
+            10% { opacity: 0.98; }
+            50% { opacity: 1; }
+            95% { opacity: 0.95; }
+            100% { opacity: 0.98; }
+        }
+
+        /* TELA DE "LOGIN" */
+        #login-screen {
+            text-align: center;
+            z-index: 10;
+        }
+
+        .title {
+            color: #7a0000;
+            font-size: 1.5rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            text-shadow: 0 0 5px rgba(122, 0, 0, 0.5);
+        }
+
+        .enter-btn {
+            background: transparent;
+            color: #555;
+            border: 1px solid #555;
+            padding: 10px 40px;
+            font-family: inherit;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .enter-btn:hover {
+            border-color: #7a0000;
+            color: #7a0000;
+            background-color: #110000;
+            text-shadow: 0 0 5px rgba(122, 0, 0, 0.5);
+            box-shadow: 0 0 10px rgba(122, 0, 0, 0.2);
+        }
+
+        /* TELA DO DIÁRIO */
+        #diary-screen {
+            display: none;
+            width: 90%;
+            max-width: 700px;
+            height: 80vh;
+            flex-direction: column;
+            z-index: 10;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: #444;
+            border-bottom: 1px solid #222;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+            color: #c0c0c0;
+            border: none;
+            font-family: inherit;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            resize: none;
+            outline: none;
+            text-shadow: 0 0 2px rgba(192, 192, 192, 0.3);
+        }
+
+        textarea::-webkit-scrollbar { width: 8px; }
+        textarea::-webkit-scrollbar-thumb { background: #222; }
+    </style>
+</head>
+<body>
+
+    <div id="crt-overlay"></div>
+
+    <div id="login-screen">
+        <div class="title">Arquivo Pessoal</div>
+        <button class="enter-btn" onclick="entrarNoDiario()">Acessar</button>
+    </div>
+
+    <div id="diary-screen">
+        <div class="header">
+            <span>Usuário: H. Graves</span>
+            <span id="status">Sincronizado.</span>
+        </div>
+        <textarea id="diary-text" spellcheck="false" placeholder="Digite seus pensamentos aqui... eles não vão a lugar nenhum."></textarea>
+    </div>
+
+    <script>
+        let audioCtx;
+
+        // Configura o som sintético (para não precisar de arquivos MP3)
+        function playClickSound() {
+            if (!audioCtx) return;
+            
+            const oscillator = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+
+            // Configuração para soar como uma batida seca e mecânica
+            oscillator.type = 'square';
+            oscillator.frequency.setValueAtTime(120, audioCtx.currentTime); 
+            oscillator.frequency.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.05);
+
+            // Volume bem baixo e rápido como henry e seu cérebro de merda
+            gainNode.gain.setValueAtTime(0.02, audioCtx.currentTime); 
+            gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.03);
+
+            oscillator.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+
+            oscillator.start();
+            oscillator.stop(audioCtx.currentTime + 0.05);
+        }
+
+        // Função para trocar de tela e iniciar o áudio
+        function entrarNoDiario() {
+            // Navegadores bloqueiam áudio até o usuário clicar em algo
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+
+            document.getElementById('login-screen').style.display = 'none';
+            document.getElementById('diary-screen').style.display = 'flex';
+            
+            // Carrega o texto salvo
+            const textoSalvo = localStorage.getItem('diarioAndrew');
+            if (textoSalvo) {
+                document.getElementById('diary-text').value = textoSalvo;
+            }
+        
+            document.getElementById('diary-text').focus();
+        }
+
+        // Salva o texto 
+        const textarea = document.getElementById('diary-text');
+        
+        textarea.addEventListener('input', function() {
+            localStorage.setItem('diarioAndrew', this.value);
+        });
+
+        textarea.addEventListener('keydown', function(e) {
+            // Evita tocar o som em teclas de controle 
+            if(e.key.length === 1 || e.key === 'Backspace' || e.key === 'Enter') {
+                playClickSound();
+            }
+        });
+    </script>
+</body>
+</html>
