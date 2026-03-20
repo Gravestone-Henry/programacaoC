@@ -1,1 +1,1 @@
-Google Cloud Shell
+Kasm cloud
