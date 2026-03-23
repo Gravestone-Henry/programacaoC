@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Xadrez Vagabundo</title>
+    <style>
+        :root {
+            --claro: #eeeed2;
+            --escuro: #769656;
+            --destaque: rgba(255, 255, 0, 0.5);
+        }
+
+        body { display: flex; flex-direction: column; align-items: center; font-family: sans-serif; background: #222; color: white; }
+        
+        #tabuleiro {
+            display: grid;
+            grid-template-columns: repeat(8, 60px);
+            grid-template-rows: repeat(8, 60px);
+            border: 5px solid #333;
+            user-select: none;
+        }
+
+        .casa {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 40px;
+            cursor: pointer;
+        }
+
+        .casa.clara { background-color: var(--claro); }
+        .casa.escura { background-color: var(--escuro); }
+        .selecionada { background-color: var(--destaque) !important; }
+    </style>
+</head>
+<body>
+
+    <h2>Xadrez D preguiçoso</h2>
+    <div id="tabuleiro"></div>
+    <p id="status">Vez das Brancas</p>
+
+    <script>
+        const tabuleiroElemento = document.getElementById('tabuleiro');
+        const statusElemento = document.getElementById('status');
+        
+        //  peças caracteres do unicode chato pa carai d achar 
+        const pecas = {
+            r: '♜', n: '♞', b: '♝', q: '♛', k: '♚', p: '♟', // Pretas
+            R: '♖', N: '♘', B: '♗', Q: '♕', K: '♔', P: '♙'  // Brancas
+        };
+
+        const layoutInicial = [
+            ['r','n','b','q','k','b','n','r'],
+            ['p','p','p','p','p','p','p','p'],
+            ['','','','','','','',''],
+            ['','','','','','','',''],
+            ['','','','','','','',''],
+            ['','','','','','','',''],
+            ['P','P','P','P','P','P','P','P'],
+            ['R','N','B','Q','K','B','N','R']
+        ];
+
+        let casaSelecionada = null;
+        let turno = 'brancas';
+
+        function criarTabuleiro() {
+            tabuleiroElemento.innerHTML = '';
+            for (let r = 0; r < 8; r++) {
+                for (let c = 0; c < 8; c++) {
+                    const casa = document.createElement('div');
+                    casa.classList.add('casa');
+                    casa.classList.add((r + c) % 2 === 0 ? 'clara' : 'escura');
+                    casa.dataset.row = r;
+                    casa.dataset.col = c;
+                    
+                    const pecaTexto = layoutInicial[r][c];
+                    casa.textContent = pecas[pecaTexto] || '';
+                    
+                    casa.onclick = () => clicarNaCasa(r, c);
+                    tabuleiroElemento.appendChild(casa);
+                }
+            }
+        }
+
+        function clicarNaCasa(r, c) {
+            const pecaClicada = layoutInicial[r][c];
+
+            if (casaSelecionada) {
+                // Tenta mover
+                moverPeca(casaSelecionada.r, casaSelecionada.c, r, c);
+                casaSelecionada = null;
+                removerDestaques();
+            } else {
+                // Seleciona a peça (apenas se for o turno correto)
+                if (pecaClicada && (turno === 'brancas' ? pecaClicada === pecaClicada.toUpperCase() : pecaClicada === pecaClicada.toLowerCase())) {
+                    casaSelecionada = { r, c };
+                    destacarCasa(r, c);
+                }
+            }
+        }
+
+        function moverPeca(rOrigem, cOrigem, rDestino, cDestino) {
+            // Lógica simplificada sem mov ditado
+            if (rOrigem === rDestino && cOrigem === cDestino) return;
+
+            layoutInicial[rDestino][cDestino] = layoutInicial[rOrigem][cOrigem];
+            layoutInicial[rOrigem][cOrigem] = '';
+            
+            turno = (turno === 'brancas') ? 'pretas' : 'brancas';
+            statusElemento.textContent = `Vez das ${turno.charAt(0).toUpperCase() + turno.slice(1)}`;
+            
+            criarTabuleiro();
+        }
+
+        function destacarCasa(r, c) {
+            removerDestaques();
+            const index = r * 8 + c;
+            tabuleiroElemento.children[index].classList.add('selecionada');
+        }
+
+        function removerDestaques() {
+            Array.from(tabuleiroElemento.children).forEach(el => el.classList.remove('selecionada'));
+        }
+
+        criarTabuleiro();
+    </script>
+</body>
+</html>
