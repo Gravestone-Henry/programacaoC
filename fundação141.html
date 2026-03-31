@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campeão Onde Poucos Acreditam</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Archivo+Black&family=Oswald:wght@700&display=swap');
+
+        body {
+            background-color: #121212;
+            color: #fff;
+            overflow-x: hidden;
+            background-image: url('https://www.transparenttextures.com/patterns/concrete-wall-2.png');
+        }
+
+        .graffiti { font-family: 'Permanent Marker', cursive; }
+        .punchline { font-family: 'Archivo Black', sans-serif; }
+        .lambe-lambe { font-family: 'Oswald', sans-serif; }
+
+        /* Efeito de papel colado (Lambe-Lambe) */
+        .poster {
+            transition: all 0.3s ease;
+            filter: contrast(1.2) brightness(0.9);
+            cursor: pointer;
+            box-shadow: 5px 5px 0px rgba(0,0,0,0.5);
+        }
+
+        .poster:hover {
+            transform: scale(1.05) rotate(0deg) !important;
+            z-index: 50 !important;
+            filter: contrast(1.5) brightness(1.1);
+            box-shadow: 15px 15px 0px #ffed00;
+        }
+
+        /* Animação de Spray */
+        .spray-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            background: radial-gradient(circle at var(--x) var(--y), rgba(255, 237, 0, 0.15) 0%, transparent 20%);
+            z-index: 1;
+        }
+
+        .glitch-text {
+            text-shadow: 2px 0 #ff0000, -2px 0 #00ffcc;
+        }
+    </style>
+</head>
+<body class="selection:bg-yellow-500 selection:text-black">
+
+    <div class="spray-bg" id="spray"></div>
+
+    <div class="fixed inset-0 opacity-5 select-none pointer-events-none flex flex-wrap gap-4 p-4">
+        <span class="text-9xl font-black">C</span>
+        <span class="text-9xl font-black">O</span>
+        <span class="text-9xl font-black">P</span>
+        <span class="text-9xl font-black">A</span>
+    </div>
+
+    <main class="relative z-10 min-h-screen p-6 md:p-20">
+        
+        <header class="mb-20">
+            <h1 class="punchline text-6xl md:text-9xl uppercase leading-none tracking-tighter italic glitch-text">
+                VENDAVAL DAS <br> <span class="text-yellow-500">NEUROSE</span>
+            </h1>
+            <p class="graffiti text-2xl mt-4 opacity-80">"Manos de todos os lados querem rimas quentes da zona sul."</p>
+        </header>
+
+        <div class="relative grid grid-cols-1 md:grid-cols-3 gap-10">
+            
+            <div class="poster bg-white text-black p-6 -rotate-2 h-fit border-2 border-black">
+                <span class="text-xs uppercase font-bold tracking-widest opacity-40">Diss pro mundo</span>
+                <h2 class="lambe-lambe text-4xl uppercase leading-none mt-2 mb-4">
+                    "Manos que fazem tigrinho venderiam o cu por like."
+                </h2>
+                <p class="font-mono text-sm">— Slk</p>
+            </div>
+
+            <div class="poster bg-zinc-900 text-yellow-500 p-8 rotate-3 h-fit border-4 border-yellow-500">
+                <h2 class="punchline text-5xl uppercase leading-tight italic">
+                    UM MANO DE VDD <br> OS <br> MEUS VERSOS ENTENDE
+                </h2>
+                <div class="mt-4 border-t border-yellow-500 pt-2 text-white graffiti">
+                    Prove que é capaz igual stephen hawking
+                </div>
+            </div>
+
+            <div class="poster bg-red-600 text-white p-6 -rotate-1 h-fit shadow-2xl">
+                <h2 class="lambe-lambe text-4xl uppercase">
+                    "Papai noel nos ajude, algo nesse mundo mude."
+                </h2>
+                <p class="mt-4 text-xs font-black uppercase"> C.O.P.A FUNDAÇÃO 141</p>
+            </div>
+
+            <div class="poster bg-black border-2 border-white text-white p-10 md:col-span-2 rotate-1">
+                <h2 class="punchline text-4xl md:text-6xl uppercase tracking-tighter">
+                    "eu sou o truta que prefere uma fuga do q uma luta."
+                </h2>
+            </div>
+
+            <div class="poster bg-yellow-500 text-black p-6 rotate-2 h-fit">
+                <h2 class="lambe-lambe text-3xl uppercase leading-none">
+                    "Não melhor que você eu tento apenas sobreviver."
+                </h2>
+            </div>
+
+                <div class="poster bg-yellow-500 text-black p-6 rotate-2 h-fit">
+                <h2 class="lambe-lambe text-3xl uppercase leading-none">
+                    "Complexo igual Donnie Darko."
+                </h2>
+            </div>
+
+                        <div class="poster bg-red-600 text-white p-6 -rotate-1 h-fit shadow-2xl">
+                <h2 class="lambe-lambe text-4xl uppercase">
+                    "Corpo de homem forte,coração de menino fraco."
+                </h2>
+                <p class="mt-4 text-xs font-black uppercase"> Personagem incrivel,Ser humano horrivel</p>
+            </div>
+
+                        <div class="poster bg-zinc-900 text-yellow-500 p-8 rotate-3 h-fit border-4 border-yellow-500">
+                <h2 class="punchline text-5xl uppercase leading-tight italic">
+                    Procurando <br> meu <br> espaço,talvez um abraço
+                </h2>
+                <div class="mt-4 border-t border-yellow-500 pt-2 text-white graffiti">
+                    as rimas que escrevo são bobas e boçais, os sentimentos que falo são reais
+                </div>
+            </div>
+
+                        <div class="poster bg-white text-black p-6 -rotate-2 h-fit border-2 border-black">
+                <span class="text-xs uppercase font-bold tracking-widest opacity-40">Querem me impedir de viver tds meus sonhos</span>
+                <h2 class="lambe-lambe text-4xl uppercase leading-none mt-2 mb-4">
+                    "Manos que vivem a guerra querem a paz."
+                </h2>
+                <p class="font-mono text-sm">— busque ser alguém que você mesmo ia respeitar</p>
+            </div>
+
+                        <div class="poster bg-black border-2 border-white text-white p-10 md:col-span-2 rotate-1">
+                <h2 class="punchline text-4xl md:text-6xl uppercase tracking-tighter">
+                    "Eu acredito que faz parte perder pra entender ."
+                </h2>
+            </div>
+            <div class="poster bg-white text-black p-6 -rotate-2 h-fit border-2 border-black">
+                <span class="text-xs uppercase font-bold tracking-widest opacity-40">Diss pro mundo</span>
+                <h2 class="lambe-lambe text-4xl uppercase leading-none mt-2 mb-4">
+                    "As motivações do herói e do vilão se parecem."
+                </h2>
+                <p class="font-mono text-sm">— eu gosto das coisas q me ferem</p>
+            </div>
+
+            <div class="poster bg-zinc-900 text-yellow-500 p-8 rotate-3 h-fit border-4 border-yellow-500">
+                <h2 class="punchline text-5xl uppercase leading-tight italic">
+                    invento mentiras <br> pra <br> me isolar
+                </h2>
+                <div class="mt-4 border-t border-yellow-500 pt-2 text-white graffiti">
+                    acho q nd aq é capaz de me consolar
+                </div>
+            </div>
+
+            <div class="poster bg-red-600 text-white p-6 -rotate-1 h-fit shadow-2xl">
+                <h2 class="lambe-lambe text-4xl uppercase">
+                    "Eu aprendi cedo quem devo abrigar em casa."
+                </h2>
+                <p class="mt-4 text-xs font-black uppercase"> tenho 1000 e 1 problemas pra melhorar</p>
+            </div>
+
+            <div class="poster bg-black border-2 border-white text-white p-10 md:col-span-2 rotate-1">
+                <h2 class="punchline text-4xl md:text-6xl uppercase tracking-tighter">
+                    "Até quem eu amo to querendo distância."
+                </h2>
+            </div>
+
+            <div class="poster bg-yellow-500 text-black p-6 rotate-2 h-fit">
+                <h2 class="lambe-lambe text-3xl uppercase leading-none">
+                    "Sinto saudades dos elogios da vovó,eles me pareciam reais e n me transmitia dó."
+                </h2>
+            </div>
+
+                <div class="poster bg-yellow-500 text-black p-6 rotate-2 h-fit">
+                <h2 class="lambe-lambe text-3xl uppercase leading-none">
+                    "Talvez amanhã eu não esteja mais aqui."
+                </h2>
+            </div>
+
+                        <div class="poster bg-red-600 text-white p-6 -rotate-1 h-fit shadow-2xl">
+                <h2 class="lambe-lambe text-4xl uppercase">
+                    "666 pedidos de ajuda, jesus, me escuta?."
+                </h2>
+                <p class="mt-4 text-xs font-black uppercase"> programado pra ser ruim</p>
+            </div>
+
+                        <div class="poster bg-zinc-900 text-yellow-500 p-8 rotate-3 h-fit border-4 border-yellow-500">
+                <h2 class="punchline text-5xl uppercase leading-tight italic">
+                    Toda familia <br> reunida só <br> no enterro
+                </h2>
+                <div class="mt-4 border-t border-yellow-500 pt-2 text-white graffiti">
+                    Ja que eu to no inferno,eu chamo o diabo p dançar valsa
+                </div>
+            </div>
+
+                        <div class="poster bg-white text-black p-6 -rotate-2 h-fit border-2 border-black">
+                <span class="text-xs uppercase font-bold tracking-widest opacity-40">Querem me impedir de viver tds meus sonhos</span>
+                <h2 class="lambe-lambe text-4xl uppercase leading-none mt-2 mb-4">
+                    "Ela pediu p eu ir com calma e eu pedi sua alma"
+                </h2>
+                <p class="font-mono text-sm">— uso minhas letras p desabafar, nela falo meus medor meus erros</p>
+            </div>
+
+                        <div class="poster bg-black border-2 border-white text-white p-10 md:col-span-2 rotate-1">
+                <h2 class="punchline text-4xl md:text-6xl uppercase tracking-tighter">
+                    "Toca o tema da minha morte e muito atento eu ouço ."
+                </h2>
+            </div>
+            <div class="poster bg-white text-black p-6 -rotate-2 h-fit border-2 border-black">
+                <span class="text-xs uppercase font-bold tracking-widest opacity-40">Diss pro mundo</span>
+                <h2 class="lambe-lambe text-4xl uppercase leading-none mt-2 mb-4">
+                    "Despido de tudo eu sei quem sou."
+                </h2>
+                <p class="font-mono text-sm">— Mais um.</p>
+            </div>
+
+            <div class="poster bg-zinc-900 text-yellow-500 p-8 rotate-3 h-fit border-4 border-yellow-500">
+                <h2 class="punchline text-5xl uppercase leading-tight italic">
+                    Sinto seu <br> Coração <br> Batendo
+                </h2>
+                <div class="mt-4 border-t border-yellow-500 pt-2 text-white graffiti">
+                    espero q seja por mim
+                </div>
+            </div>
+
+            <div class="poster bg-red-600 text-white p-6 -rotate-1 h-fit shadow-2xl">
+                <h2 class="lambe-lambe text-4xl uppercase">
+                    "se perca comigo e vamo se encontra"
+                </h2>
+                <p class="mt-4 text-xs font-black uppercase"> as vozes na minha mente não param de gritar</p>
+            </div>
+
+            <div class="poster bg-black border-2 border-white text-white p-10 md:col-span-2 rotate-1">
+                <h2 class="punchline text-4xl md:text-6xl uppercase tracking-tighter">
+                    "A minha letra é nua e crua."
+                </h2>
+            </div>
+
+            <div class="poster bg-yellow-500 text-black p-6 rotate-2 h-fit">
+                <h2 class="lambe-lambe text-3xl uppercase leading-none">
+                    "o controle eu larguei o barco foi pra casa do caralho."
+                </h2>
+            </div>
+
+                <div class="poster bg-yellow-500 text-black p-6 rotate-2 h-fit">
+                <h2 class="lambe-lambe text-3xl uppercase leading-none">
+                    "A alquimia moderna é pegar as neurose e transforma em arte."
+                </h2>
+            </div>
+
+                        <div class="poster bg-red-600 text-white p-6 -rotate-1 h-fit shadow-2xl">
+                <h2 class="lambe-lambe text-4xl uppercase">
+                    "tenta repetir oq eu faço e repita o fracasso."
+                </h2>
+                <p class="mt-4 text-xs font-black uppercase"> Coração de ferro, forjado pelos erros</p>
+            </div>
+
+                        <div class="poster bg-zinc-900 text-yellow-500 p-8 rotate-3 h-fit border-4 border-yellow-500">
+                <h2 class="punchline text-5xl uppercase leading-tight italic">
+                    não aprendi <br> como <br> formar uma familia
+                </h2>
+                <div class="mt-4 border-t border-yellow-500 pt-2 text-white graffiti">
+                    Manos na fronteira da loucura enxergam a vida como um quadro cinza
+                </div>
+            </div>
+
+                        <div class="poster bg-white text-black p-6 -rotate-2 h-fit border-2 border-black">
+                <span class="text-xs uppercase font-bold tracking-widest opacity-40">Acalme esse coração confuso e não destrua tudo</span>
+                <h2 class="lambe-lambe text-4xl uppercase leading-none mt-2 mb-4">
+                    "Ja não me importo em rimar pq intendi q o importante é uma mensagem passar."
+                </h2>
+                <p class="font-mono text-sm">— Me diga como vc lida com o seu passado e eu te digo seu futuro</p>
+            </div>
+
+                        <div class="poster bg-black border-2 border-white text-white p-10 md:col-span-2 rotate-1">
+                <h2 class="punchline text-4xl md:text-6xl uppercase tracking-tighter">
+                    " Talvez o amor nos salve,ou o ódio fica grande e gera alardes."
+                </h2>
+            </div>
+
+                        <div class="poster bg-white text-black p-6 -rotate-2 h-fit border-2 border-black">
+                <span class="text-xs uppercase font-bold tracking-widest opacity-40">Diss pro mundo</span>
+                <h2 class="lambe-lambe text-4xl uppercase leading-none mt-2 mb-4">
+                    "eu não digo amém, eu digo amem."
+                </h2>
+                <p class="font-mono text-sm">seu sistema vai entrar em pane quando achar algm q te prepare lanches</p>
+            </div>
+
+            <div class="poster bg-zinc-900 text-yellow-500 p-8 rotate-3 h-fit border-4 border-yellow-500">
+                <h2 class="punchline text-5xl uppercase leading-tight italic">
+                    EU CONTO <br> SEGREDOS  <br> ATRAVÉS DA ARTE
+                </h2>
+                <div class="mt-4 border-t border-yellow-500 pt-2 text-white graffiti">
+                    c.o.p.a
+                </div>
+            </div>
+
+            <div class="poster bg-red-600 text-white p-6 -rotate-1 h-fit shadow-2xl">
+                <h2 class="lambe-lambe text-4xl uppercase">
+                    "meia noite um segredo eu vou te contar."
+                </h2>
+                <p class="mt-4 text-xs font-black uppercase"> na mnh playlist toca slipknot tim maia e copa</p>
+            </div>
+
+            <div class="poster bg-black border-2 border-white text-white p-10 md:col-span-2 rotate-1">
+                <h2 class="punchline text-4xl md:text-6xl uppercase tracking-tighter">
+                    "eu gosto das drogas e as drogas gostam de mim."
+                </h2>
+            </div>
+
+            <div class="poster bg-yellow-500 text-black p-6 rotate-2 h-fit">
+                <h2 class="lambe-lambe text-3xl uppercase leading-none">
+                    "Tenha atitude,se esforçe se entenda esse nó não deixa q o enforque."
+                </h2>
+            </div>
+
+                <div class="poster bg-yellow-500 text-black p-6 rotate-2 h-fit">
+                <h2 class="lambe-lambe text-3xl uppercase leading-none">
+                    "TODOS AQUI VÃO MORRER UM DIA."
+                </h2>
+            </div>
+
+                        <div class="poster bg-red-600 text-white p-6 -rotate-1 h-fit shadow-2xl">
+                <h2 class="lambe-lambe text-4xl uppercase">
+                    "Não desista."
+                </h2>
+                <p class="mt-4 text-xs font-black uppercase"> kkk</p>
+            </div>
+
+                        <div class="poster bg-zinc-900 text-yellow-500 p-8 rotate-3 h-fit border-4 border-yellow-500">
+                <h2 class="punchline text-5xl uppercase leading-tight italic">
+                    só <br> entende<br> quem vive isso
+                </h2>
+                <div class="mt-4 border-t border-yellow-500 pt-2 text-white graffiti">
+                    não espere meu like eu não seu norte.
+                </div>
+            </div>
+
+                        <div class="poster bg-white text-black p-6 -rotate-2 h-fit border-2 border-black">
+                <span class="text-xs uppercase font-bold tracking-widest opacity-40">O ódio nunca vai ser maior q o amor</span>
+                <h2 class="lambe-lambe text-4xl uppercase leading-none mt-2 mb-4">
+                    "o brilho no olho do homem é mais importante q sua cor."
+                </h2>
+                <p class="font-mono text-sm">— C.O.P.A GAZZ</p>
+            </div>
+
+                        <div class="poster bg-black border-2 border-white text-white p-10 md:col-span-2 rotate-1">
+                <h2 class="punchline text-4xl md:text-6xl uppercase tracking-tighter">
+                    "Me perdoe por acreditar q a vida é um momento ."
+                </h2>
+            </div>
+
+        </div>
+
+        <footer class="mt-32 border-t border-zinc-800 pt-10 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="graffiti text-4xl opacity-50 hover:opacity-100 transition-opacity"C.O.P.A </div> - Igual eu só eu memo</div>
+            <div class="text-right">
+                <p class="uppercase text-[10px] tracking-[0.3em] opacity-40">Projeto Experimental</p>
+                <p class="punchline italic">SÃO PAULO CAPITAL</p>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        // Efeito de Spray seguindo o mouse
+        const spray = document.getElementById('spray');
+        document.addEventListener('mousemove', (e) => {
+            spray.style.setProperty('--x', e.clientX + 'px');
+            spray.style.setProperty('--y', e.clientY + 'px');
+        });
+    </script>
+
+</body>
+</html>
